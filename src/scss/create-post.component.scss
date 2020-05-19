@@ -1,0 +1,155 @@
+
+
+/* The Modal (background) */
+// #root {
+//   display: block;
+//   // // display: none; /* Hidden by default */
+//   position: absolute; /* Stay in place */
+//   padding-top: 100px; /* Location of the box */
+//   left: 0;
+//   top: 0;
+//   width: 100%; /* Full width */
+//   height: 100%; /* Full height */
+//   overflow: auto; /* Enable scroll if needed */
+//   z-index: 100;
+//   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+// }
+
+/* Modal Content */
+
+.modal-content {
+  z-index: 5;
+  
+  background-color: #fefefe;
+  margin-left: 35%;
+  position: fixed;
+  padding: 0;
+  margin-top: 5%;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 6px 100px 0 rgba(0, 0, 0, 0.2), 0 6px 100px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  
+
+}
+.label{
+  margin:0;
+}
+
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.exit{
+  
+  margin:20px;
+  cursor: pointer;
+  &:hover
+  {
+      color: #EE76C7;
+  }
+  font-size: large;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 0px 20px;
+  background-color: #F6BECB;
+  color: white;
+}
+
+.modal-body {
+    display: flex;
+    padding: 7px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  
+  
+}.avatar
+{
+
+    height: 100%;
+}
+.avatarDiv
+{
+    margin: 0 15px;
+    height: 30px;
+    width: 30px;
+}
+.avatarIcon
+{
+    margin: 14px 15px;
+    font-size: 40px;
+    color: gray;
+}
+.dropdown
+{
+ 
+    
+}
+.earth
+{
+    margin-right: 7px;
+    margin-bottom: 5px;
+}
+.create-post{
+  color: white;
+  font-size: 17px;
+  margin-top: 12px;
+  
+}
+.post
+{  margin: 20px;
+  width: 90%;
+    margin-top: 0;
+    background-color: transparent;
+border: none;
+&-line{
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+}
+.hashtag
+{
+    margin:0 20px 20px 20px;
+    display:flex;
+}
+.help
+{
+    margin-left: 20px;
+    color: gray;
+}
+.icon{
+    color: gray;
+    margin:20px;
+    cursor: pointer;
+    &:hover
+    {
+        color: #EE76C7;
+    }
+    font-size: large;
+}
+.postbtn
+{
+   margin-left: 40%;
+}
