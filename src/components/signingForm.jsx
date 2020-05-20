@@ -19,7 +19,7 @@ const SigningForm = props => {
   const [state, setState] = useState({
     user: {
 
-      name: "ghg",
+      name: "",
       email: "",
       password: "",
       Blogs: [],
@@ -28,10 +28,10 @@ const SigningForm = props => {
 
     }, errors: {}, account: false
   })
-  
+
   useEffect(() => {
     console.log("render")
-    setState({...state,errors:{}})
+    setState({ ...state, errors: {} })
   }, [props.match.params.id]);
 
   const schema = {
@@ -46,15 +46,32 @@ const SigningForm = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     const errors = validate();
-    if (errors) {
-      // if(props.match.params.id=="login")
-      // {
-      //   delete errors.name;
-      // }
+    // if (errors) {
+    //   if(props.match.params.id=="login")
+    //   {
+    //     console.log("before",errors)
+    //     delete errors.name;
+    //   }
+
+    //   setState({ ...state, errors })
+    //   console.log("after",errors)
+    //   return;
+    // }
+    // console.log("d5l l function", errors)
+
+    if (errors && (props.match.params.id == "login")) {
+      delete errors.name;
+
+      if (Object.keys(errors).length > 0) {
+        setState({ ...state, errors })
+        return;
+      }
+    }
+    else if (errors) {
       setState({ ...state, errors })
-      console.log(errors)
       return;
     }
+
     //callBackend
     setState({ ...state, errors: {} });
     const user = { ...state.user }
@@ -95,12 +112,11 @@ const SigningForm = props => {
 
     }
   }
-  const validate = () => 
-  {
+  const validate = () => {
     const res = joi.validate(state.user, schema, { abortEarly: false });
     if (res.error == null) return null;
     const errors = {};
-    for (const error of res.error.details) { 
+    for (const error of res.error.details) {
       errors[error.path] = error.message;
     }
     return errors;
@@ -133,7 +149,7 @@ const SigningForm = props => {
             <div className="">
               <form className="center" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  {props.match.params.id == "register" && <input type="text" className="form-control" placeholder="User Name" id="name" onChange={handleChange} />}
+                  {props.match.params.id == "register" && <input type="text" className="form-control" placeholder="Name" id="name" onChange={handleChange} />}
                   {state.errors.name && <div className="alert alert-danger">{state.errors.name}</div>}
 
                 </div>
