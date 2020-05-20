@@ -159,7 +159,7 @@ const handleChange=({target})=>
     </div>
 <div className="form-group">
 
-    <textarea value={state.blog.body} onChange={handleChange} id="body"  cols={50} rows={4} className="post " placeholder="What's on your mind, bella?"/>
+    <textarea value={state.blog.body} onChange={handleChange} id="body"  cols={50} rows={4} className="post " placeholder="What's on your mind?"/>
           {state.errors.body && <div className="alert alert-danger">{state.errors.body}</div>}
 </div>
     <div className="post">
