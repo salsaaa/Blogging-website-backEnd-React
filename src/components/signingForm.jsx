@@ -46,19 +46,6 @@ const SigningForm = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     const errors = validate();
-    // if (errors) {
-    //   if(props.match.params.id=="login")
-    //   {
-    //     console.log("before",errors)
-    //     delete errors.name;
-    //   }
-
-    //   setState({ ...state, errors })
-    //   console.log("after",errors)
-    //   return;
-    // }
-    // console.log("d5l l function", errors)
-
     if (errors && (props.match.params.id == "login")) {
       delete errors.name;
 
@@ -174,6 +161,8 @@ const SigningForm = props => {
 
                   <div>
                     <br />
+                    {props.match.params.id == "register" && (<div><span>Already have an account? </span ><Link to="/signingForm/login" >Login</Link></div>)}
+
                     {props.match.params.id == "login" && (<div><span>don't have an acount? </span ><Link to="/signingForm/register" >Sign Up</Link></div>)}
 
                   </div>
