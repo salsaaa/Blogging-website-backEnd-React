@@ -19,7 +19,7 @@ const SigningForm = props => {
   const [state, setState] = useState({
     user: {
 
-      name: "name",
+      name: "",
       email: "",
       password: "",
       Blogs: [],
@@ -28,6 +28,11 @@ const SigningForm = props => {
 
     }, errors: {}, account: false
   })
+  
+  useEffect(() => {
+    console.log("render")
+    setState({...state,errors:{}})
+  }, [props.match.params.id]);
 
   const schema = {
     name: joi.string().required(),
@@ -42,6 +47,10 @@ const SigningForm = props => {
     e.preventDefault();
     const errors = validate();
     if (errors) {
+      if(props.match.params.id=="login")
+      {
+        delete errors.name;
+      }
       setState({ ...state, errors })
       console.log(errors)
       return;
@@ -86,13 +95,13 @@ const SigningForm = props => {
 
     }
   }
-  const validate = () => //ya treturn null w yb2a mafe4 errors ya obj wyb2a howa da el errors
+  const validate = () => 
   {
-    const res = joi.validate(state.user, schema, { abortEarly: false });//obj feh errors w kaza 7aga
+    const res = joi.validate(state.user, schema, { abortEarly: false });
     if (res.error == null) return null;
     const errors = {};
-    for (const error of res.error.details) { //details => array of errors obj
-      errors[error.path] = error.message;//path:name(key) //msg:msgerror(value)
+    for (const error of res.error.details) { 
+      errors[error.path] = error.message;
     }
     return errors;
   }

@@ -111,7 +111,7 @@ const HomePage = props => {
                   </div>
                   <div className="col-md-3">
 
-                    <FirstBlogs blog={props.firstBlogs[4]} onMyProfile={props.onMyProfile} />
+                    <FirstBlogs blog={props.firstBlogs[6]} onMyProfile={props.onMyProfile} />
 
                   </div>
                 </div>
