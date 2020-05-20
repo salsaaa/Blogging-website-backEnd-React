@@ -19,7 +19,7 @@ const SigningForm = props => {
   const [state, setState] = useState({
     user: {
 
-      name: "",
+      name: "ghg",
       email: "",
       password: "",
       Blogs: [],
@@ -47,10 +47,10 @@ const SigningForm = props => {
     e.preventDefault();
     const errors = validate();
     if (errors) {
-      if(props.match.params.id=="login")
-      {
-        delete errors.name;
-      }
+      // if(props.match.params.id=="login")
+      // {
+      //   delete errors.name;
+      // }
       setState({ ...state, errors })
       console.log(errors)
       return;
