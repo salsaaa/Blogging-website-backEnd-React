@@ -18,24 +18,24 @@ import joi from 'joi-browser';
 const SigningForm = props => {
   const [state, setState] = useState({
     user: {
-     
-      name: "",
+
+      name: "name",
       email: "",
       password: "",
-      Blogs:[],
-      friends:[]
+      Blogs: [],
+      friends: []
 
 
-    }, errors: {},account:false
+    }, errors: {}, account: false
   })
- 
+
   const schema = {
     name: joi.string().required(),
     email: joi.string().email().required(),
     password: joi.string().required().min(6),
-    Blogs:joi,
-    friends:joi,
-    _id:joi
+    Blogs: joi,
+    friends: joi,
+    _id: joi
 
   }
   const handleSubmit = async e => {
@@ -48,47 +48,46 @@ const SigningForm = props => {
     }
     //callBackend
     setState({ ...state, errors: {} });
-    const originalData = { ...props.Users }
     const user = { ...state.user }
 
     const id = props.match.params.id
     if (id === "register") {
-try{
+      try {
 
-  const { data } = await axios.post(
-    "https://blogging-website-2020.herokuapp.com/users/register", user
-    );
-    console.log("added")
-    //Update State
-    // props.onAdd(data);
-    props.history.replace("/signingForm/login");
-  }
-        
-        catch(err) {
+        const { data } = await axios.post(
+          "https://blogging-website-2020.herokuapp.com/users/register", user
+        );
+        console.log("added")
+        //Update State
+        // props.onAdd(data);
+        props.history.replace("/signingForm/login");
+      }
+
+      catch (err) {
         const errors = { ...state.errors }
         errors["email"] = "Email is already token"
         setState({ ...state, errors })
-        
+
       }
     }
     else if (id === "login") {
-      try{
+      try {
         const { data } = await axios.post(
           "https://blogging-website-2020.herokuapp.com/users/login", user
-          )
-          props.onLogout("login",data.token);
-          props.history.replace("/home");
-        }
-        catch(err){
-          
-          setState({...state,account:true})
-        };
-        
-        
+        )
+        props.onLogout("login", data.token);
+        props.history.replace("/home");
       }
+      catch (err) {
+
+        setState({ ...state, account: true })
+      };
+
+
     }
-    const validate = () => //ya treturn null w yb2a mafe4 errors ya obj wyb2a howa da el errors
-    {
+  }
+  const validate = () => //ya treturn null w yb2a mafe4 errors ya obj wyb2a howa da el errors
+  {
     const res = joi.validate(state.user, schema, { abortEarly: false });//obj feh errors w kaza 7aga
     if (res.error == null) return null;
     const errors = {};
@@ -125,7 +124,7 @@ try{
             <div className="">
               <form className="center" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <input type="text" className="form-control" placeholder="User Name" id="name" onChange={handleChange} />
+                  {props.match.params.id == "register" && <input type="text" className="form-control" placeholder="User Name" id="name" onChange={handleChange} />}
                   {state.errors.name && <div className="alert alert-danger">{state.errors.name}</div>}
 
                 </div>
@@ -141,8 +140,8 @@ try{
                 </div>
                 <div className="form-group btnCenter">
 
-                {state.account&&props.match.params.id == "login"&&<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Login failed </strong>Invalid Username Or Email Or Password.
+                  {state.account && props.match.params.id == "login" && <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Login failed </strong>Invalid Username Or Email Or Password.
 </div>}
 
                   <button type="submit" value="Submit" className=" btn btn-primary py-3 px-5">{props.match.params.id == "login" ? "login" : "register"}</button>

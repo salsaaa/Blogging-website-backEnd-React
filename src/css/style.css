@@ -8441,8 +8441,10 @@ textarea.form-control {
   -o-box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
   border: 1px solid #f7f7f7; }
+
   @media (min-width: 768px) {
     .blog-entry {
+      min-height: 96%;
       margin-bottom: 30px; } }
   @media (max-width: 767.98px) {
     .blog-entry {

@@ -43,7 +43,9 @@ class App extends Component {
   async componentDidMount() {
     this.handleHeaderAndLogoutStatet();
   }
- handlePageClick = page => {
+ handlePageClick = (e,page) => {
+  e.preventDefault(); 
+
     this.setState({ activePage: page });
 
   };
@@ -86,23 +88,29 @@ class App extends Component {
 
   }
   handleSearch = (e) => {
+    if (e.key === "Enter") {
+    e.preventDefault(); 
 
     if(window.location.pathname=='/home')
     {
-      this.setState({ search: e ,activePage:1});
+      this.setState({ search: e.target.value ,activePage:1});
      
-      
+      e.target.value="";
     }
     else{
-      this.setState({ searchProfile: e,activePage:1 });
-
-    }
+      this.setState({ searchProfile: e.target.value,activePage:1 });
+      e.target.value="";
+    }}
   };
 
   handleNewFeeds = (newFeeds) => {
     this.setState({ newFeeds});
 
   };
+  handleResetSearch=()=>{
+    this.state.searchProfile="";
+
+  }
   render() {
     ////searching
     if (this.state.Blogs) {
@@ -114,7 +122,8 @@ class App extends Component {
         ) ||
         P.author.toLowerCase().includes(this.state.search.toLowerCase())
       )
-      console.log("searched", this.state.searchedBlogs);
+    this.state.search="";
+      
     }
 
     return (
@@ -165,6 +174,7 @@ class App extends Component {
               myProfile={this.state.myProfile}
               onMyProfile={this.handleMyProfile}
               searchProfile={this.state.searchProfile}
+              onResetSearch={this.handleResetSearch}
 
             />
           )}

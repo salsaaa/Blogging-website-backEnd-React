@@ -22,9 +22,19 @@ const Profile = props => {
     //Set State
     setState({ blogs });
   };
-  const handleFollow = async (friendId) => {
-    const { data } = await axios.patch("https://blogging-website-2020.herokuapp.com/users", { friendId });
-    setState({ ...state, following: true })
+  const handleFollow = async (e,friendId) => {
+    e.preventDefault();
+
+    if(state.following)
+    {
+      // setState({ ...state, following:false })
+
+    }
+    else{
+
+      const { data } = await axios.patch("https://blogging-website-2020.herokuapp.com/users", { friendId });
+      setState({ ...state, following:true })
+    }
   };
   const handleBlogDelete = async blog => {
     // //backend
@@ -65,16 +75,17 @@ const Profile = props => {
     fetchMyAPI();
     window.scrollTo(0, 0)
   }, [props.myProfile]);
-////searching
-if (state.blogs) {
-  state.searchedBlogs = state.blogs.filter((P) =>
-  P.title.toLowerCase().includes(props.searchProfile.toLowerCase()) || 
-  P.tags.find((t) =>
-      t.toLowerCase().includes(props.searchProfile.toLowerCase())
-    ) ||
-    P.author.toLowerCase().includes(props.searchProfile.toLowerCase())
-  )
-}
+  ////searching
+  if (state.blogs) {
+    state.searchedBlogs = state.blogs.filter((P) =>
+      P.title.toLowerCase().includes(props.searchProfile.toLowerCase()) ||
+      P.tags.find((t) =>
+        t.toLowerCase().includes(props.searchProfile.toLowerCase())
+      ) ||
+      P.author.toLowerCase().includes(props.searchProfile.toLowerCase())
+    )
+    props.onResetSearch();
+  }
   return (
     <React.Fragment>
 
@@ -92,8 +103,8 @@ if (state.blogs) {
         <div className="container">
           <div className="row no-gutters slider-text  justify-content-center" data-scrollax-parent="true">
             <div className="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-              <h1 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Welcome to <strong>{props.myProfile ? "My" : `${state.blogs[0] && state.blogs[0].author}'s`}</strong> Profile</h1>
-              {!props.myProfile && <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#" onClick={() => handleFollow(state.blogs[0] && state.blogs[0].userId)} className="btn btn-primary btn-outline-white px-5 py-3">{state.following || state.friends.includes(state.blogs[0] && state.blogs[0].userId) ? "Following" : "follow"}</a></p>}
+              <h1 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Welcome {(!props.myProfile) && "to"} <strong>{state.blogs[0] && state.blogs[0].author}{!props.myProfile && "'s"}</strong> {!props.myProfile && "Profile"}</h1>
+              {!props.myProfile && <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#" onClick={(e) => handleFollow(e,state.blogs[0] && state.blogs[0].userId)} className="btn btn-primary btn-outline-white px-5 py-3">{state.following || state.friends.includes(state.blogs[0] && state.blogs[0].userId) ? "Following" : "follow"}</a></p>}
             </div>
           </div>
         </div>
