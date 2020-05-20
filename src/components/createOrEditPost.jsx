@@ -19,7 +19,7 @@ const CreateOrEditPost=props=>{
      author:"",
       title:"",
       body:"",
-      pic:"image_1.jpg",
+      pic:"https://data.whicdn.com/images/214547070/original.jpg",
       tags:[],
      
     }, errors:{}})
