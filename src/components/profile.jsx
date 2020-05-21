@@ -9,7 +9,7 @@ const Profile = props => {
   const [state, setState] = useState({
     blogs: [],
     searchedBlogs: [],
-    author: {},
+    authorName: "",
     friends: [],
     following: false
   })
@@ -65,7 +65,7 @@ const Profile = props => {
 
       else {
         setState({
-          ...state, blogs: values[0].data.blogs, friends: values[1].data.friends
+          ...state, blogs: values[0].data.blogs,authorName:values[0].data.authorName, friends: values[1].data.friends
         })
       }
 
@@ -105,7 +105,7 @@ const Profile = props => {
         <div className="container">
           <div className="row no-gutters slider-text  justify-content-center" data-scrollax-parent="true">
             <div className="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-              <h1 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Welcome {(!props.myProfile) && "to"} <strong>{state.blogs[0] && state.blogs[0].author}{!props.myProfile && "'s"}</strong> {!props.myProfile && "Profile"}</h1>
+              <h1 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Welcome {(!props.myProfile) && "to"} <strong>{state.authorName}{!props.myProfile && "'s"}</strong> {!props.myProfile && "Profile"}</h1>
               {!props.myProfile && <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#" onClick={(e) => handleFollow(e,state.blogs[0] && state.blogs[0].userId)} className="btn btn-primary btn-outline-white px-5 py-3">{state.following || state.friends.includes(state.blogs[0] && state.blogs[0].userId) ? "Following" : "follow"}</a></p>}
             </div>
           </div>

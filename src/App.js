@@ -33,6 +33,7 @@ class App extends Component {
           "https://blogging-website-2020.herokuapp.com/users/getFriendsBlogs"
         );
         this.setState({ Blogs: data.blogs });
+        
       } else {
         const { data } = await axios.get("https://blogging-website-2020.herokuapp.com/blogs");
         this.setState({ Blogs: data });
