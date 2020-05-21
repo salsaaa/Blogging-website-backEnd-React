@@ -30,7 +30,6 @@ const SigningForm = props => {
   })
 
   useEffect(() => {
-    console.log("render")
     setState({ ...state, errors: {} })
   }, [props.match.params.id]);
 
@@ -163,7 +162,7 @@ const SigningForm = props => {
                     <br />
                     {props.match.params.id == "register" && (<div><span>Already have an account? </span ><Link to="/signingForm/login" >Login</Link></div>)}
 
-                    {props.match.params.id == "login" && (<div><span>don't have an acount? </span ><Link to="/signingForm/register" >Sign Up</Link></div>)}
+                    {props.match.params.id == "login" && (<div><span>Don't have an acount? </span ><Link to="/signingForm/register" >Sign Up</Link></div>)}
 
                   </div>
 

@@ -27,12 +27,14 @@ const Profile = props => {
 
     if(state.following)
     {
-      // setState({ ...state, following:false })
+      await axios.patch("https://blogging-website-2020.herokuapp.com/users/deleteFriend", { friendId });
+
+      setState({ ...state, following:false })
 
     }
     else{
 
-      const { data } = await axios.patch("https://blogging-website-2020.herokuapp.com/users", { friendId });
+      await axios.patch("https://blogging-website-2020.herokuapp.com/users/addFriend", { friendId });
       setState({ ...state, following:true })
     }
   };
