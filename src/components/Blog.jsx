@@ -19,7 +19,7 @@ const Blog = (props) => {
       <div className="blog-entry">
         <a className="block-20" style={{ backgroundImage: `url("${props.blog.pic}")` }}>
         </a>
-        <div className="text p-4 d-block" style={{maxWidth:'346px'}}>
+        <div className="text p-3 d-block" >
           <div className="meta mb-3">
             <div><a>May 20, 2020</a></div>
 

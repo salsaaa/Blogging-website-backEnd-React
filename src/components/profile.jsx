@@ -65,7 +65,7 @@ const Profile = props => {
 
       else {
         setState({
-          ...state, blogs: values[0].data.blogs,authorName:values[0].data.authorName, friends: values[1].data.friends
+          ...state, blogs: values[0].data.blogs.reverse(),authorName:values[0].data.authorName, friends: values[1].data.friends
         })
       }
 

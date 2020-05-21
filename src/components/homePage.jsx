@@ -75,7 +75,7 @@ const HomePage = props => {
                 <div className="row no-gutters d-flex align-items-center" data-scrollax=" properties: { translateY: '-30%'}">
                   <div className="col-md-3 mb-3">
 
-                    <FirstBlogs blog={props.firstBlogs[0]} onMyProfile={props.onMyProfile} />
+                    <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-1]} onMyProfile={props.onMyProfile} />
                   </div>
                   <div className="col-md-6">
                     <div className="row no-gutters">
@@ -83,12 +83,12 @@ const HomePage = props => {
                         <div className="row no-gutters d-flex align-items-end">
                           <div className="col-md-8">
 
-                            <FirstBlogs blog={props.firstBlogs[5]} onMyProfile={props.onMyProfile} />
+                            <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-6]} onMyProfile={props.onMyProfile} />
 
                           </div>
                           <div className="col-md-4">
 
-                            <FirstBlogs blog={props.firstBlogs[3]} onMyProfile={props.onMyProfile} />
+                            <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-4]} onMyProfile={props.onMyProfile} />
 
                           </div>
                         </div>
@@ -97,12 +97,12 @@ const HomePage = props => {
                         <div className="row no-gutters d-flex align-items-start">
                           <div className="col-md-8">
 
-                            <FirstBlogs blog={props.firstBlogs[1]} onMyProfile={props.onMyProfile} />
+                            <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-2]} onMyProfile={props.onMyProfile} />
 
                           </div>
                           <div className="col-md-4">
 
-                            <FirstBlogs blog={props.firstBlogs[2]} onMyProfile={props.onMyProfile} />
+                            <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-3]} onMyProfile={props.onMyProfile} />
 
                           </div>
                         </div>
@@ -111,7 +111,7 @@ const HomePage = props => {
                   </div>
                   <div className="col-md-3">
 
-                    <FirstBlogs blog={props.firstBlogs[6]} onMyProfile={props.onMyProfile} />
+                    <FirstBlogs blog={props.firstBlogs[props.firstBlogs.length-5]} onMyProfile={props.onMyProfile} />
 
                   </div>
                 </div>
@@ -132,7 +132,7 @@ const HomePage = props => {
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
               </div>
             </div>
-            <div className="row">
+            <div className="flex">
               {state.showedBlogs.map(p =>
                 (
                   <Blog

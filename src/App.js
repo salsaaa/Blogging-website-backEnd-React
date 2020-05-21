@@ -32,11 +32,11 @@ class App extends Component {
         const { data } = await axios.get(
           "https://blogging-website-2020.herokuapp.com/users/getFriendsBlogs"
         );
-        this.setState({ Blogs: data.blogs });
+        this.setState({ Blogs: data.blogs.reverse() });
         
       } else {
         const { data } = await axios.get("https://blogging-website-2020.herokuapp.com/blogs");
-        this.setState({ Blogs: data });
+        this.setState({ Blogs: data.reverse() });
       }
     }
   }
@@ -58,7 +58,7 @@ class App extends Component {
   };
   handleAddBlogs = (blog) => {
     const Blogs = [...this.state.Blogs];
-    Blogs.push(blog);
+    Blogs.unshift(blog);
     this.setState({ Blogs });
   };
 
